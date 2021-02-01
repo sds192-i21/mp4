@@ -1,0 +1,88 @@
+---
+title: "Put a real title here"
+subtitle: "SDS 192: MP4"
+author: 
+- name: Author One
+  affiliation: Smith College
+- name: Author Two
+  affiliation: Smith College
+date: "`r format(Sys.Date(), '%B %e, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    fig_width: 8
+    fig_height: 8
+    fig_caption: true
+    theme: lumen
+    df_print: paged
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  echo = TRUE,
+  warning = FALSE
+)
+library(tidyverse)
+library(sds192)
+library(sf)
+```
+
+## Introduction
+
+> READ THE INSTRUCTIONS: https://beanumber.github.io/sds192/mod_spatial.html
+
+
+## Loading the data
+
+```{r, message=FALSE}
+library(macleish)
+names(macleish_layers)
+```
+
+## Static maps
+
+You can make a basic static map with **ggplot2** using `geom_sf()`, as shown in the figure below.
+
+```{r static, fig.cap="The boundary of the MacLeish property."}
+boundary <- macleish_layers %>%
+  pluck("boundary")
+
+ggplot() +
+  geom_sf(data = boundary)
+```
+
+## Dynamic maps
+
+You can make a basic dynamic map with **leaflet**, as shown in the figure below.
+
+```{r dynamic, fig.cap="The boundary of the MacLeish property."}
+library(leaflet)
+
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = boundary)
+```
+
+
+
+## Word count
+
+```{r word_count, message=FALSE, echo=FALSE}
+text_stats()
+```
+
+## Standards
+
+In this assignment, we attempted the following [standards](https://beanumber.github.io/sds192/standards.html):
+
+- `r standard_button("wrangling")`: We met the Wrangling standard because we...
+- `r standard_button("spatial")`: We met the Spatial standard because we...
+- `r standard_button("leaflet")`: We met the Leaflet standard because we...
+- `r standard_button("aesthetics")`: We mastered the Aesthetics standard because we...
+- `r standard_button("markdown")`: We mastered the R Markdown standard because we...
+
+## References

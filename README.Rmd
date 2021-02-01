@@ -1,0 +1,16 @@
+---
+title: "sds192-mp4"
+output:
+  github_document:
+    html_preview: false
+---
+
+Mini-project 4:
+
+See (https://beanumber.github.io/sds192/mod_spatial.html) for the project instructions
+
+
+```{r, eval=TRUE, message=FALSE}
+library(tidyverse)
+library(macleish)
+```
